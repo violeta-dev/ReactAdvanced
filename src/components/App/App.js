@@ -19,6 +19,7 @@ class App extends React.Component {
     
 
    handleLogin = () => {
+     console.log(this.loggedUserId)
     this.setLoggedUserId(this.loggedUserId);
     this.dispatch(actions.authLogin(this.loggedUserId));
   };
