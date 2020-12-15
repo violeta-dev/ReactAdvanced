@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 class ErrorBoundary extends React.Component {
   state = {
@@ -21,9 +22,12 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const Root = ({ children }) => (
+const Root = ({ children, store }) => (
   <ErrorBoundary>
-    <BrowserRouter>{children}</BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </Provider>
+
   </ErrorBoundary>
 );
 

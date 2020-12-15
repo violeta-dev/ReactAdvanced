@@ -1,6 +1,7 @@
 import T from 'prop-types';
 import { Layout as DesignLayout, Row, Col, Typography } from 'antd';
 
+
 import Header from './Header';
 import styles from './Layout.module.css';
 

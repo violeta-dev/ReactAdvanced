@@ -4,6 +4,8 @@ import { Alert, Col, Row, Typography } from 'antd';
 
 import { login } from '../../../api/auth';
 import LoginForm from './LoginForm';
+import { connect } from 'react-redux';
+import { authLogin } from '../../../store/actions';
 
 const { Title } = Typography;
 
@@ -20,6 +22,7 @@ class LoginPage extends React.Component {
         onLogin(() => {
           // Navigate to previously required route
           const { from } = location.state || { from: { pathname: '/' } };
+          console.log(from)
           history.replace(from);
         });
       })
@@ -27,6 +30,9 @@ class LoginPage extends React.Component {
         this.setState({ error });
       });
   };
+  
+ 
+
 
   resetError = () => this.setState({ error: null });
 
@@ -61,4 +67,6 @@ LoginPage.propTypes = {
   }).isRequired,
 };
 
-export default LoginPage;
+export default connect(null, {
+  onLogin: authLogin,
+})(LoginPage);

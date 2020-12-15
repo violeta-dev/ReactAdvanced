@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Redirect, useLocation } from 'react-router-dom';
 
-import { useAuthContext } from '../../contexts/auth';
+//import { useAuthContext } from '../../contexts/auth';
+import { getLoggedUserId } from '../../store/selectors';
 
-const PrivateRoute = props => {
-  const { isLogged } = useAuthContext();
+const PrivateRoute = ({isLogged,...props}) => {
+ // const { isLogged } = useAuthContext();
   const location = useLocation();
   return isLogged ? (
     <Route {...props} />
@@ -13,4 +15,6 @@ const PrivateRoute = props => {
   );
 };
 
-export default PrivateRoute;
+export default connect(state => ({ isLogged: getLoggedUserId(state) }))(
+  PrivateRoute
+);
