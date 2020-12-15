@@ -5,33 +5,13 @@ const initialState = {
   adverts: null,
 };
 
-//const reducer = (state = initialState, action) => {
-  //   switch (action.type) {
-  //     case types.AUTH_LOGIN:
-  //       // login
-  //       return { ...state, auth: action.payload.loggedUserId };
-  //     // return Object.assign({}, state, { auth: action.payload.loggedUserId });
-  //     case types.AUTH_LOGOUT:
-  //       // logout
-  //       return { ...state, auth: null };
-  //     case types.TWEETS_LOADED:
-  //       return { ...state, tweets: action.payload.tweets };
-  //     case types.TWEETS_CREATED:
-  //       if (!state.tweets) {
-  //         return { ...state, tweets: [action.payload.tweet] };
-  //       }
-  //       // return { ...state, tweets: [...state.tweets, action.payload.tweet] };
-  //       return { ...state, tweets: state.tweets.concat(action.payload.tweet) };
-  //     default:
-  //       return state;
-  //   }
-  // };
-  
+
   export const auth = (state = initialState.auth, action) => {
-  switch (action.type) {
+   switch (action.type) {
     case types.AUTH_LOGIN:
       // login
       //return { ...state, auth: action.payload.loggedUserId };
+      console.log(action.payload.loggedUserId)
       return action.payload.loggedUserId;
     case types.AUTH_LOGOUT:
       // logout
@@ -39,8 +19,8 @@ const initialState = {
       return null;
     default:
       return state;
-  }
-};
+   }
+  };
  export const adverts = (state = initialState.adverts, action) => {
   switch (action.type) {
     case types.ADVERTS_LOADED:
