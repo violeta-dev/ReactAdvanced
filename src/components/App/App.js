@@ -2,22 +2,34 @@ import React from 'react';
 import T from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+
 import { PrivateRoute, LoginPage } from '../auth';
 import { AdvertPage, AdvertsPage, NewAdvertPage } from '../adverts';
 import { AuthContextProvider } from '../../contexts/auth';
 import NotFoundPage from './NotFoundPage';
+import * as actions from '../../store/actions';
+
 
 class App extends React.Component {
   state = {
     isLogged: this.props.isInitiallyLogged,
   };
 
-  handleLogin = cb => {
-    this.setState({ isLogged: true }, cb);
+
+    
+
+   handleLogin = () => {
+    this.setLoggedUserId(this.loggedUserId);
+    this.dispatch(actions.authLogin(this.loggedUserId));
   };
 
+  /*handleLogin = cb => {
+    this.setState({ isLogged: true }, cb);
+  };*/
+
   handleLogout = () => {
-    this.setState({ isLogged: false });
+    //this.setState({ isLogged: false });
+    this.dispatch(actions.authLogout());
   };
 
   render() {
